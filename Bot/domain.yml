@@ -16,6 +16,7 @@ intents:
   - ask_time
   - ask_day
   - ask_date
+  - calculate
 
 
 responses:
@@ -53,6 +54,7 @@ actions:
   - action_tell_time
   - action_tell_date
   - action_tell_day
+  - action_calculate
 
 entities:
   - city

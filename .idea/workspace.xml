@@ -5,8 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="73a4b15c-222e-4e04-8dc9-5495389efe35" name="Changes" comment="rasa">
-      <change afterPath="$PROJECT_DIR$/config.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Bot/.rasa/cache/cache.db" beforeDir="false" afterPath="$PROJECT_DIR$/Bot/.rasa/cache/cache.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Bot/actions/actions.py" beforeDir="false" afterPath="$PROJECT_DIR$/Bot/actions/actions.py" afterDir="false" />
@@ -14,8 +12,6 @@
       <change beforePath="$PROJECT_DIR$/Bot/data/rules.yml" beforeDir="false" afterPath="$PROJECT_DIR$/Bot/data/rules.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Bot/data/stories.yml" beforeDir="false" afterPath="$PROJECT_DIR$/Bot/data/stories.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Bot/domain.yml" beforeDir="false" afterPath="$PROJECT_DIR$/Bot/domain.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bot/endpoints.yml" beforeDir="false" afterPath="$PROJECT_DIR$/Bot/endpoints.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/polarity/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/polarity/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -195,7 +191,7 @@
       <option name="presentableId" value="Default" />
       <updated>1748193092074</updated>
       <workItem from="1748193093090" duration="19916000" />
-      <workItem from="1748214684151" duration="3216000" />
+      <workItem from="1748214684151" duration="6252000" />
     </task>
     <task id="LOCAL-00001" summary="1">
       <option name="closed" value="true" />
@@ -213,7 +209,15 @@
       <option name="project" value="LOCAL" />
       <updated>1748205016645</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="rasa">
+      <option name="closed" value="true" />
+      <created>1748218153961</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1748218153961</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

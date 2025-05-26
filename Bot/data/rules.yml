@@ -17,7 +17,10 @@ rules:
   - intent: get_weather
   - action: action_get_weather
 
-
+- rule: Вычисления
+  steps:
+    - intent: calculate
+    - action: action_calculate
 
 - rule: Запрос времени
   steps:

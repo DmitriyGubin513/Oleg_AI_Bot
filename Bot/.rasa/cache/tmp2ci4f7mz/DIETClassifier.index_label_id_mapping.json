@@ -1,0 +1,17 @@
+{
+  "0": "affirm",
+  "1": "ask_date",
+  "2": "ask_day",
+  "3": "ask_favorite_topic",
+  "4": "ask_time",
+  "5": "bot_challenge",
+  "6": "calculate",
+  "7": "deny",
+  "8": "get_weather",
+  "9": "goodbye",
+  "10": "greet",
+  "11": "mood_great",
+  "12": "mood_unhappy",
+  "13": "tell_favorite_topic",
+  "14": "tell_name"
+}

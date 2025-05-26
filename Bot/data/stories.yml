@@ -31,6 +31,11 @@ stories:
     - intent: ask_day
     - action: action_tell_day
 
+- story: Вычисления
+  steps:
+    - intent: calculate
+    - action: action_calculate
+
 - story: sad path 1
   steps:
   - intent: greet

@@ -2,6 +2,8 @@ from typing import Text, Dict, Any, List
 
 import datetime
 import requests
+import re
+import ast
 from rasa_sdk import Action, Tracker
 from rasa_sdk.events import SlotSet
 from rasa_sdk.executor import CollectingDispatcher
@@ -133,3 +135,72 @@ class ActionTellDate(Action):
         message = f"Сегодня {date}"
         dispatcher.utter_message(text=message)
         return []
+
+#Калькуляция
+class ActionCalculate(Action):
+    def name(self) -> Text:
+        return "action_calculate"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+        lang = domain.get("config", {}).get("language", "ru")
+        user_text = tracker.latest_message.get("text", "")
+
+        math_expr = self._extract_math_expression(user_text)
+
+        if not math_expr:
+            msg = self._get_message("no_expr", lang)
+            dispatcher.utter_message(text=msg)
+            return [SlotSet("last_bot_message", msg)]
+
+        try:
+            result = self._safe_calculation(math_expr)
+            msg = self._format_result(result, lang)
+        except:
+            msg = self._get_message("invalid", lang)
+
+        dispatcher.utter_message(text=msg)
+        return [SlotSet("last_bot_message", msg)]
+
+    def _extract_math_expression(self, text: Text) -> Text:
+        """Поиск математических выражений с улучшенным regex"""
+        matches = re.findall(r"(?:\d+\.?\d*|\.\d+|\d+)(?:\s*[+\-*/%]\s*(?:\d+\.?\d*|\.\d+|\d+)|\([^)]+\))+", text)
+        return matches[0] if matches else ""
+
+    def _safe_calculation(self, expr: Text) -> float:
+        """Безопасное вычисление с проверкой AST"""
+        tree = ast.parse(expr, mode='eval')
+
+        allowed_nodes = (
+            ast.Expression, ast.Constant, ast.BinOp,
+            ast.UnaryOp, ast.Add, ast.Sub,
+            ast.Mult, ast.Div, ast.USub, ast.UAdd
+        )
+
+        for node in ast.walk(tree):
+            if not isinstance(node, allowed_nodes):
+                raise ValueError("Недопустимая операция")
+
+        return eval(expr)
+
+    def _format_result(self, value: float, lang: Text) -> Text:
+        """Форматирование результата с учетом языка"""
+        if lang == "ru":
+            return f"📊 Результат: {value:.2f}".replace(".00", "")  # Убираем .00 для целых чисел
+        return f"📊 Result: {value:.2f}".replace(".00", "")
+
+    def _get_message(self, msg_type: Text, lang: Text) -> Text:
+        """Локализованные сообщения (сохранена оригинальная логика)"""
+        messages = {
+            "ru": {
+                "no_expr": "🔢 Не вижу математического выражения",
+                "invalid": "❌ Не могу вычислить это выражение"
+            },
+            "en": {
+                "no_expr": "🔢 I can't find a math expression",
+                "invalid": "❌ Can't calculate this expression"
+            }
+        }
+        return messages.get(lang, {}).get(msg_type, "")

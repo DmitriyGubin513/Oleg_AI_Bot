@@ -1,8 +1,8 @@
 from textblob import TextBlob
-from googletrans import Translator
+from googletrans import AsyncTranslator
 from langdetect import detect
 
-translator = Translator()
+translator = AsyncTranslator()
 
 
 def is_english(text):

@@ -1,5 +1,9 @@
 version: "3.1"
 
+config:
+  language: "ru"
+  time_format: "%H:%M"
+
 intents:
   - greet
   - goodbye
@@ -9,6 +13,10 @@ intents:
   - mood_unhappy
   - bot_challenge
   - get_weather
+  - ask_time
+  - ask_day
+  - ask_date
+
 
 responses:
   utter_greet:
@@ -36,8 +44,26 @@ responses:
   - text: "У меня есть много личностей... лучше не спрашивай меня о них, иначе проснётся голосовой помошник Евгений"
   - text: "Я... а кто я?.."
 
+  utter_ask_city:
+    - text: "В каком городе тебя интересует погода?"
+    - text: "В каком городе вы хотите узнать погоду?"
+
 actions:
-  - utter_get_weather
+  - action_get_weather
+  - action_tell_time
+  - action_tell_date
+  - action_tell_day
+
+entities:
+  - city
+
+slots:
+  city:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: city
 
 
 session_config:

@@ -12,7 +12,24 @@ stories:
 - story: Погода
   steps:
   - intent: get_weather
-  - action: utter_get_weather
+    entities:
+      - city: "Нижний Новгород"
+  - action: action_get_weather
+
+- story: Время
+  steps:
+    - intent: ask_time
+    - action: action_tell_time
+
+- story: Дата
+  steps:
+    - intent: ask_date
+    - action: action_tell_date
+
+- story: День недели
+  steps:
+    - intent: ask_day
+    - action: action_tell_day
 
 - story: sad path 1
   steps:

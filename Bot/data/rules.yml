@@ -15,4 +15,21 @@ rules:
 - rule: Погода
   steps:
   - intent: get_weather
-  - action: utter_get_weather
+  - action: action_get_weather
+
+
+
+- rule: Запрос времени
+  steps:
+    - intent: ask_time
+    - action: action_tell_time
+
+- rule: Запрос даты
+  steps:
+    - intent: ask_date
+    - action: action_tell_date
+
+- rule: Запрос дня недели
+  steps:
+    - intent: ask_day
+    - action: action_tell_day

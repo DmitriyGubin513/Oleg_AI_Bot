@@ -9,6 +9,26 @@ stories:
   - intent: mood_great
   - action: utter_happy
 
+- story: sad path 1
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_unhappy
+  - action: utter_cheer_up
+  - action: utter_did_that_help
+  - intent: affirm
+  - action: utter_happy
+
+- story: sad path 2
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_unhappy
+  - action: utter_cheer_up
+  - action: utter_did_that_help
+  - intent: deny
+  - action: utter_goodbye
+
 - story: Погода
   steps:
   - intent: get_weather
@@ -36,22 +56,21 @@ stories:
     - intent: calculate
     - action: action_calculate
 
-- story: sad path 1
+- story: Хрюшка-повторюшка
   steps:
-  - intent: greet
-  - action: utter_greet
-  - intent: mood_unhappy
-  - action: utter_cheer_up
-  - action: utter_did_that_help
-  - intent: affirm
-  - action: utter_happy
+    - intent: repeat
+    - action: action_repeat
 
-- story: sad path 2
+- story: Сохранение имени пользователя
   steps:
-  - intent: greet
-  - action: utter_greet
-  - intent: mood_unhappy
-  - action: utter_cheer_up
-  - action: utter_did_that_help
-  - intent: deny
-  - action: utter_goodbye
+    - intent: tell_name
+      entities:
+        - name
+    - action: action_save_name
+
+- story: Сохранение любимой темы
+  steps:
+    - intent: tell_favorite_topic
+      entities:
+        - favorite_topic
+    - action: action_save_topic

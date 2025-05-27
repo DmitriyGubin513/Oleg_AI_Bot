@@ -4,6 +4,7 @@ config:
   language: "ru"
   time_format: "%H:%M"
 
+# !!! new: repeat
 intents:
   - greet
   - goodbye
@@ -17,18 +18,23 @@ intents:
   - ask_day
   - ask_date
   - calculate
+  - repeat
+  - tell_name
+  - tell_favorite_topic
+  - ask_about_self
+  - ask_favorite_topic
+  - search_web
 
-
+# !!! utter_ask_city
 responses:
   utter_greet:
   - text: "Привет! Как ты?"
   - text: "Хола, амиго"
-  - text: "Я Олег :)"
+  - text: "Я Олег :) Привет!"
 
   utter_cheer_up:
-  - text: "Держи мемы или картинки:"
+  - text: "Держи мем:"
     image: "https://i.imgur.com/nGF1K8f.jpg"
-
 
   utter_did_that_help:
   - text: "Я помог тебе?"
@@ -40,8 +46,8 @@ responses:
   - text: "Ну пока 0-0..."
 
   utter_iamabot:
-  - text: "Я РОБОТ-ОЛЕГ."
-  - text: "Я робот, созданный на раса."
+  - text: "Я РОБОТ-ОЛЕГ!"
+  - text: "Я робот, созданный на Rasa"
   - text: "У меня есть много личностей... лучше не спрашивай меня о них, иначе проснётся голосовой помошник Евгений"
   - text: "Я... а кто я?.."
 
@@ -49,15 +55,35 @@ responses:
     - text: "В каком городе тебя интересует погода?"
     - text: "В каком городе вы хотите узнать погоду?"
 
+  utter_favorite_topic_acknowledge:
+    - text: "Очень круто, что тебе интересно {favorite_topic}!"
+
+  utter_ask_favorite_topic:
+    - text: >
+        {% if favorite_topic %}
+          Тебе интересно {{ favorite_topic }}.
+        {% else %}
+          Ты можешь рассказать мне, что тебе интересно!
+        {% endif %}
+
 actions:
   - action_get_weather
   - action_tell_time
   - action_tell_date
   - action_tell_day
   - action_calculate
+  - action_repeat
+  - action_ask_about_self
+  - action_save_topic
+  - action_save_name
+  - action_memory_init
+  - action_search_web
 
 entities:
   - city
+  - favorite_topic
+  - name
+  - search_term
 
 slots:
   city:
@@ -66,6 +92,27 @@ slots:
     mappings:
       - type: from_entity
         entity: city
+
+  name:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: name
+
+  favorite_topic:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: favorite_topic
+
+  search_term:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_entity
+        entity: search_term
 
 
 session_config:

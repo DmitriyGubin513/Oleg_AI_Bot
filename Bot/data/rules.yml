@@ -36,3 +36,30 @@ rules:
   steps:
     - intent: ask_day
     - action: action_tell_day
+
+- rule: Хрюшка-повторюшка
+  steps:
+    - intent: repeat
+    - action: action_repeat
+
+- rule: About user (ask_about_self)
+  steps:
+    - intent: ask_about_self
+    - action: action_ask_about_self
+
+- rule: Ask favorite topic
+  steps:
+    - intent: ask_favorite_topic
+    - action: utter_ask_favorite_topic
+
+- rule: Инициализация БД на старте и приветствие (если сохранено имя)
+  steps:
+    - intent: session_start
+    - action: action_session_start
+    - action: action_memory_init
+    - action: action_listen
+
+- rule: Поиск в интернете
+  steps:
+    - intent: search_web
+    - action: action_search_web
